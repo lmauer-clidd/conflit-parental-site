@@ -96,6 +96,14 @@ const addr = site.contact.address;
                 (santé, éléments concernant les enfants…). Nous en parlerons lors du premier échange.
               </p>
             </div>
+
+            <!-- Honeypot anti-spam : caché aux humains, souvent rempli par les bots -->
+            <div class="hidden" aria-hidden="true">
+              <label>Ne remplissez pas ce champ
+                <input type="text" name="website" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
+
             <div class="flex items-start gap-3">
               <input id="consent" name="consent" type="checkbox" required
                 class="mt-1 h-5 w-5 shrink-0 rounded border-line text-brand-600 focus:ring-brand-400" />
@@ -106,7 +114,7 @@ const addr = site.contact.address;
             </div>
 
             <button type="submit"
-              class="inline-flex w-full items-center justify-center rounded-xl bg-brand-600 px-5 py-3.5 font-medium text-white shadow-soft transition-colors hover:bg-brand-700 sm:w-auto">
+              class="inline-flex w-full items-center justify-center rounded-xl bg-brand-600 px-5 py-3.5 font-medium text-white shadow-soft transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
               Envoyer ma demande
             </button>
 
@@ -119,38 +127,60 @@ const addr = site.contact.address;
 </BaseLayout>
 
 <script>
-  // Envoi sans backend ni tiers : composition d'un e-mail via le client de l'utilisateur.
-  // (À l'installation serveur, on pourra brancher un endpoint Mailjet.)
+  // Envoi via l'endpoint serveur /api/contact (relais Mailjet). Aucune donnée
+  // stockée, l'IP n'est pas propagée. Repli : adresse e-mail directe en cas d'échec.
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const status = document.getElementById('form-status');
-  const email = form?.dataset.email ?? '';
+  const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+  const fallback = form?.dataset.email ?? '';
 
-  form?.addEventListener('submit', (e) => {
+  function setStatus(msg: string, kind: 'info' | 'success' | 'error') {
+    if (!status) return;
+    status.textContent = msg;
+    const tone =
+      kind === 'success'
+        ? 'text-brand-700 font-medium'
+        : kind === 'error'
+          ? 'text-clay-700'
+          : 'text-muted';
+    status.className = `text-sm ${tone}`;
+  }
+
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) {
-      if (status) {
-        status.textContent = 'Merci de compléter les champs obligatoires.';
-        status.className = 'text-sm text-clay-600';
-      }
+      setStatus('Merci de compléter les champs obligatoires.', 'error');
       form.reportValidity();
       return;
     }
     const data = new FormData(form);
-    const nom = data.get('nom');
-    const tel = data.get('tel') || 'non renseigné';
-    const mail = data.get('email');
-    const message = data.get('message');
-    const subject = encodeURIComponent(`Prise de contact — ${nom}`);
-    const body = encodeURIComponent(
-      `Nom : ${nom}\nE-mail : ${mail}\nTéléphone : ${tel}\n\nSituation :\n${message}`,
-    );
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-    if (status) {
-      status.textContent =
-        'Votre messagerie va s’ouvrir pour finaliser l’envoi. Sinon, écrivez-nous directement à ' +
-        email +
-        '.';
-      status.className = 'text-sm text-brand-700';
+    const payload = {
+      nom: data.get('nom'),
+      email: data.get('email'),
+      tel: data.get('tel'),
+      message: data.get('message'),
+      website: data.get('website'), // honeypot
+    };
+
+    if (submitBtn) submitBtn.disabled = true;
+    setStatus('Envoi en cours…', 'info');
+
+    try {
+      const r = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (r.ok) {
+        form.reset();
+        setStatus('Merci, votre demande a bien été envoyée. Nous vous recontactons rapidement.', 'success');
+      } else {
+        setStatus(`Une erreur est survenue. Vous pouvez nous écrire directement à ${fallback}.`, 'error');
+      }
+    } catch {
+      setStatus(`Envoi impossible pour le moment. Écrivez-nous directement à ${fallback}.`, 'error');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
   });
 </script>
