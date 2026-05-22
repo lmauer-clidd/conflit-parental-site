@@ -10,36 +10,36 @@
   --font-sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
 
-  /* Marque — pétrole / sauge : sérieux mais apaisant */
-  --color-brand-50:  #f1f7f5;
-  --color-brand-100: #dceae6;
-  --color-brand-200: #bdd9d1;
-  --color-brand-300: #93c0b4;
-  --color-brand-400: #64a092;
-  --color-brand-500: #428275;
-  --color-brand-600: #356b61;
-  --color-brand-700: #2c574f;
-  --color-brand-800: #264642;
-  --color-brand-900: #213b38;
+  /* Marque — bleu encre : confiance, registre justice, sérieux posé */
+  --color-brand-50:  #eef2f8;
+  --color-brand-100: #dbe3f0;
+  --color-brand-200: #bccadd;
+  --color-brand-300: #93a6c6;
+  --color-brand-400: #6480ab;
+  --color-brand-500: #415d8a;
+  --color-brand-600: #2f4a72;
+  --color-brand-700: #233456; /* primaire */
+  --color-brand-800: #1b2942; /* sections sombres */
+  --color-brand-900: #141d33;
 
-  /* Neutres chauds — fonds sable / crème */
-  --color-cream:      #faf7f1;
-  --color-sand:       #f3ecdf;
-  --color-sand-deep:  #e8dcc8;
+  /* Neutres chauds — fonds ivoire / sable (chaleur qui équilibre l'encre) */
+  --color-cream:      #f7f3ea;
+  --color-sand:       #efe7d8;
+  --color-sand-deep:  #e6dac6;
 
-  /* Accent — argile / terracotta douce, utilisé avec parcimonie */
-  --color-clay-300: #e7ac90;
-  --color-clay-400: #db9173;
-  --color-clay-500: #cd7a59;
-  --color-clay-600: #b56344;
-  --color-clay-700: #9a4f30; /* terracotta foncé — pour le TEXTE (contraste AA) */
-  --color-clay-800: #7e4226;
+  /* Accent — terracotta : chaleur humaine, utilisé avec intention */
+  --color-clay-300: #ecae93;
+  --color-clay-400: #e08a64;
+  --color-clay-500: #d06b45;
+  --color-clay-600: #c25b3c; /* accent vif */
+  --color-clay-700: #9e4628; /* terracotta foncé — TEXTE & bouton (contraste AA) */
+  --color-clay-800: #863a22;
 
   /* Texte */
-  --color-ink:   #22302d; /* titres */
-  --color-body:  #41504c; /* corps de texte */
-  --color-muted: #55635d; /* texte secondaire (AA ≥ 4.5:1 sur sable/crème) */
-  --color-line:  #e4ddd0; /* filets / bordures douces */
+  --color-ink:   #232a33; /* titres */
+  --color-body:  #3b4654; /* corps de texte */
+  --color-muted: #586273; /* texte secondaire (AA ≥ 4.5:1 sur sable/ivoire) */
+  --color-line:  #e3dccc; /* filets / bordures douces */
 
   /* Rayons & ombres */
   --radius-xl: 1.25rem;
