@@ -1,0 +1,41 @@
+---
+import { site } from '../data/site';
+import Button from './Button.astro';
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+const {
+  title = 'Parlons de votre situation',
+  text = 'Le premier échange sert à comprendre où vous en êtes et à voir, simplement, comment nous pouvons aider. Sans engagement.',
+} = Astro.props;
+---
+<section class="bg-cream py-16 sm:py-20">
+  <div class="container-page">
+    <div class="overflow-hidden rounded-3xl bg-brand-800 px-6 py-12 text-brand-50 shadow-card sm:px-12 sm:py-14">
+      <div class="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
+        <div>
+          <h2 class="text-3xl text-white sm:text-[2.1rem]">{title}</h2>
+          <p class="mt-4 max-w-xl text-lg leading-relaxed text-brand-100">{text}</p>
+        </div>
+        <div class="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-end">
+          <Button href="/contact" variant="clay" class="w-full sm:w-auto lg:w-full">
+            Prendre contact
+          </Button>
+          <a
+            href={site.contact.phoneHref}
+            class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-600 px-5 py-3 font-medium text-brand-50 hover:bg-brand-700 sm:w-auto lg:w-full"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.5.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.2.2 2.4.57 3.5a1 1 0 0 1-.25 1l-2.2 2.3Z"
+                fill="currentColor"></path>
+            </svg>
+            {site.contact.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

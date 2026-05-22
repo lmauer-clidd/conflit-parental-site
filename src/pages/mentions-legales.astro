@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import { site } from '../data/site';
+
+const description = 'Mentions légales du site L’enfant au milieu.';
+const addr = site.contact.address;
+---
+
+<BaseLayout title="Mentions légales" description={description} noindex={true}>
+  <PageHero eyebrow="Informations légales" title="Mentions légales" crumbs={[{ label: 'Mentions légales' }]} />
+
+  <Section tone="cream">
+    <div class="prose-soft">
+      <h2>Éditeur du site</h2>
+      <p>
+        {site.legalName} — structure d’analyse, d’évaluation et de stratégie de dossier, coordonnée
+        par {site.founder.name}, {site.founder.role.toLowerCase()}.
+      </p>
+      <ul>
+        <li>Adresse : {addr.street}, {addr.postalCode} {addr.city}, {addr.country}</li>
+        <li>Téléphone : {site.contact.phone}</li>
+        <li>E-mail : {site.contact.email}</li>
+        <li>Numéro SIRET : <strong>[À COMPLÉTER]</strong></li>
+        <li>Numéro ADELI / RPPS (psychologue) : <strong>[À COMPLÉTER]</strong></li>
+        <li>Forme juridique : <strong>[À COMPLÉTER]</strong></li>
+      </ul>
+
+      <h2>Directrice de la publication</h2>
+      <p>{site.founder.name}.</p>
+
+      <h2>Hébergement</h2>
+      <p>
+        Le site est hébergé sur une infrastructure située dans l’Union européenne.
+        <br />Hébergeur : <strong>[À COMPLÉTER — ex. OVH SAS, 2 rue Kellermann, 59100 Roubaix,
+        France]</strong>.
+      </p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        L’ensemble des contenus de ce site (textes, éléments graphiques, logo) est protégé par le
+        droit de la propriété intellectuelle. Toute reproduction ou représentation, totale ou
+        partielle, sans autorisation préalable, est interdite.
+      </p>
+
+      <h2>Responsabilité</h2>
+      <p>
+        Les informations diffusées sur ce site ont une vocation d’information générale et ne
+        constituent ni un avis juridique, ni un avis médical ou psychologique individualisé. Elles ne
+        sauraient se substituer à un échange direct adapté à votre situation.
+      </p>
+
+      <h2>Données personnelles</h2>
+      <p>
+        Le traitement de vos données personnelles est décrit dans notre
+        <a href="/confidentialite" class="link">politique de confidentialité</a>.
+      </p>
+    </div>
+  </Section>
+</BaseLayout>

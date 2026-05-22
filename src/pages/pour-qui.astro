@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { audiences } from '../data/site';
+
+const description =
+  'Pour les enfants, les parents, les avocats et les magistrats : un éclairage clinique, factuel et stratégique adapté à chaque place dans une séparation à haut conflit.';
+
+const icons: Record<string, string> = {
+  enfants: 'M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-7 18a7 7 0 0 1 14 0',
+  parents: 'M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm6 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3 20a5 5 0 0 1 10 0m-2 0a5 5 0 0 1 10 0',
+  avocats: 'M12 3v18M5 7h14M7 7l-3 7a3 3 0 0 0 6 0L7 7Zm10 0-3 7a3 3 0 0 0 6 0l-3-7Z',
+  magistrats: 'M4 21h16M6 21V9m12 12V9M4 9h16L12 3 4 9Z',
+};
+---
+
+<BaseLayout title="Pour qui" description={description}>
+  <PageHero
+    eyebrow="Pour qui"
+    title="Aux côtés de chacun, à sa juste place"
+    lede="Une séparation à haut conflit met en jeu des places différentes. Nous adaptons notre éclairage à celle qui est la vôtre — sans jamais perdre de vue l’enfant."
+    crumbs={[{ label: 'Pour qui' }]}
+  />
+
+  {
+    audiences.map((a, i) => (
+      <Section id={a.id} tone={i % 2 === 0 ? 'cream' : 'sand'}>
+        <div class="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-14">
+          <div>
+            <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
+              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d={icons[a.id]} stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h2 class="mt-5 text-3xl">{a.title}</h2>
+            <p class="mt-3 text-lg font-medium text-brand-700">{a.intro}</p>
+          </div>
+          <div class="space-y-5 text-lg leading-relaxed text-body lg:pt-2">
+            {a.body.map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+      </Section>
+    ))
+  }
+
+  <ContactCTA />
+</BaseLayout>

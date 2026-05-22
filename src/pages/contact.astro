@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import { site } from '../data/site';
+
+const description =
+  'Prendre contact avec L’enfant au milieu. Premier entretien de prise de contact, 95 €/h. Téléphone, e-mail — intervention France entière, dans un cadre confidentiel.';
+const addr = site.contact.address;
+---
+
+<BaseLayout title="Contact" description={description}>
+  <PageHero
+    eyebrow="Prendre contact"
+    title="Parlons de votre situation"
+    lede="Le premier échange sert simplement à comprendre où vous en êtes et à voir comment nous pouvons aider. Il a lieu dans un cadre confidentiel."
+    crumbs={[{ label: 'Contact' }]}
+  />
+
+  <Section tone="cream">
+    <div class="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <!-- Coordonnées -->
+      <div>
+        <h2 class="text-2xl">Nous joindre directement</h2>
+        <p class="mt-3 text-body">Le plus simple est souvent l’appel ou l’e-mail.</p>
+
+        <ul class="mt-7 space-y-5">
+          <li class="flex gap-4">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-100 text-brand-700">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.5.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.2.2 2.4.57 3.5a1 1 0 0 1-.25 1l-2.2 2.3Z" fill="currentColor"/></svg>
+            </span>
+            <div>
+              <p class="text-sm text-muted">Téléphone</p>
+              <a href={site.contact.phoneHref} class="text-lg font-medium text-ink hover:text-brand-700">{site.contact.phone}</a>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-100 text-brand-700">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4zM4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div>
+              <p class="text-sm text-muted">E-mail</p>
+              <a href={site.contact.emailHref} class="text-lg font-medium text-ink hover:text-brand-700 break-all">{site.contact.email}</a>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-100 text-brand-700">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </span>
+            <div>
+              <p class="text-sm text-muted">Adresse</p>
+              <p class="text-ink">{addr.street}<br />{addr.postalCode} {addr.city}</p>
+              <p class="mt-1 text-sm text-muted">{site.contact.coverage}</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="mt-8 rounded-2xl border border-line bg-sand p-5">
+          <p class="text-sm text-body">
+            <span class="font-medium text-ink">{site.pricing.firstInterviewNote} :</span>
+            {site.pricing.firstInterview}/h.
+          </p>
+        </div>
+      </div>
+
+      <!-- Formulaire -->
+      <div>
+        <div class="rounded-3xl border border-line bg-white p-6 shadow-card sm:p-8">
+          <h2 class="text-2xl">Demande de prise de contact</h2>
+          <p class="mt-2 text-body">Laissez-nous vos coordonnées : nous vous recontactons rapidement.</p>
+
+          <form id="contact-form" class="mt-6 space-y-5" novalidate data-email={site.contact.email}>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="nom" class="block text-sm font-medium text-ink">Nom <span class="text-clay-600">*</span></label>
+                <input id="nom" name="nom" type="text" required autocomplete="name"
+                  class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-400 focus:bg-white" />
+              </div>
+              <div>
+                <label for="tel" class="block text-sm font-medium text-ink">Téléphone</label>
+                <input id="tel" name="tel" type="tel" autocomplete="tel"
+                  class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-400 focus:bg-white" />
+              </div>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-ink">E-mail <span class="text-clay-600">*</span></label>
+              <input id="email" name="email" type="email" required autocomplete="email"
+                class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-400 focus:bg-white" />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-ink">Votre situation en quelques mots <span class="text-clay-600">*</span></label>
+              <textarea id="message" name="message" rows="5" required
+                class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-400 focus:bg-white"></textarea>
+              <p class="mt-2 text-sm text-muted">
+                Merci de rester général : inutile de détailler ici des informations sensibles
+                (santé, éléments concernant les enfants…). Nous en parlerons lors du premier échange.
+              </p>
+            </div>
+            <div class="flex items-start gap-3">
+              <input id="consent" name="consent" type="checkbox" required
+                class="mt-1 h-5 w-5 shrink-0 rounded border-line text-brand-600 focus:ring-brand-400" />
+              <label for="consent" class="text-sm text-body">
+                J’accepte d’être recontacté(e) au sujet de ma demande. Voir la
+                <a href="/confidentialite" class="link">politique de confidentialité</a>. <span class="text-clay-600">*</span>
+              </label>
+            </div>
+
+            <button type="submit"
+              class="inline-flex w-full items-center justify-center rounded-xl bg-brand-600 px-5 py-3.5 font-medium text-white shadow-soft transition-colors hover:bg-brand-700 sm:w-auto">
+              Envoyer ma demande
+            </button>
+
+            <p id="form-status" class="text-sm" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<script>
+  // Envoi sans backend ni tiers : composition d'un e-mail via le client de l'utilisateur.
+  // (À l'installation serveur, on pourra brancher un endpoint Mailjet.)
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  const email = form?.dataset.email ?? '';
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      if (status) {
+        status.textContent = 'Merci de compléter les champs obligatoires.';
+        status.className = 'text-sm text-clay-600';
+      }
+      form.reportValidity();
+      return;
+    }
+    const data = new FormData(form);
+    const nom = data.get('nom');
+    const tel = data.get('tel') || 'non renseigné';
+    const mail = data.get('email');
+    const message = data.get('message');
+    const subject = encodeURIComponent(`Prise de contact — ${nom}`);
+    const body = encodeURIComponent(
+      `Nom : ${nom}\nE-mail : ${mail}\nTéléphone : ${tel}\n\nSituation :\n${message}`,
+    );
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    if (status) {
+      status.textContent =
+        'Votre messagerie va s’ouvrir pour finaliser l’envoi. Sinon, écrivez-nous directement à ' +
+        email +
+        '.';
+      status.className = 'text-sm text-brand-700';
+    }
+  });
+</script>

@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { site } from '../data/site';
+
+const description =
+  'Tarifs de L’enfant au milieu : premier entretien de prise de contact à 95 €/h. Les interventions (évaluations, analyse de pièces, contre-expertise, enquêtes) font l’objet d’un devis adapté.';
+
+const included = [
+  'Un temps d’écoute pour comprendre où vous en êtes.',
+  'Un premier regard sur ce qui se joue dans votre dossier.',
+  'Des pistes concrètes : ce qui peut être évalué, analysé, vérifié ou orienté.',
+  'Une orientation claire sur les étapes possibles, sans engagement.',
+];
+---
+
+<BaseLayout title="Tarifs" description={description}>
+  <PageHero
+    eyebrow="Tarifs"
+    title="Un premier pas simple et transparent"
+    lede="Tout commence par un entretien de prise de contact. Il permet de comprendre votre situation et de voir, ensemble, ce qui aurait du sens — sans engagement."
+    crumbs={[{ label: 'Tarifs' }]}
+  />
+
+  <Section tone="cream">
+    <div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12">
+      <!-- Carte tarif -->
+      <div class="rounded-3xl border border-brand-200 bg-white p-8 shadow-card">
+        <p class="text-sm font-semibold uppercase tracking-[0.14em] text-clay-600">Premier entretien</p>
+        <div class="mt-4 flex items-end gap-2">
+          <span class="font-display text-5xl text-ink">{site.pricing.firstInterview}</span>
+          <span class="pb-1.5 text-lg text-muted">/ heure</span>
+        </div>
+        <p class="mt-3 text-body">{site.pricing.firstInterviewNote}.</p>
+        <ul class="mt-6 space-y-3">
+          {
+            included.map((item) => (
+              <li class="flex gap-3">
+                <svg class="mt-1 h-5 w-5 shrink-0 text-brand-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span class="text-body">{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-8">
+          <Button href="/contact" class="w-full">Prendre rendez-vous</Button>
+        </div>
+      </div>
+
+      <!-- Devis personnalisé -->
+      <div class="flex flex-col justify-center">
+        <h2 class="text-2xl">Et ensuite ?</h2>
+        <div class="mt-4 space-y-4 text-lg leading-relaxed text-body">
+          <p>
+            Chaque dossier est différent. Les interventions — évaluations psychologiques, analyse de
+            pièces, lecture critique d’expertise, recueil de preuves par nos enquêteurs partenaires —
+            dépendent de vos besoins réels.
+          </p>
+          <p>
+            À l’issue du premier entretien, nous vous proposons une suite claire et un
+            <strong class="font-semibold text-ink"> devis adapté</strong>, sans surprise. Vous restez
+            libre de la suite à donner.
+          </p>
+        </div>
+        <div class="mt-6 rounded-2xl border border-line bg-sand p-5 text-body">
+          <p>
+            <span class="font-medium text-ink">Bon à savoir.</span> Nous pouvons travailler en lien
+            avec votre avocat, ou vous orienter vers un avocat expérimenté si vous n’êtes pas encore
+            accompagné.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <ContactCTA />
+</BaseLayout>

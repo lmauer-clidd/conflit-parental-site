@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3ecdf"/>
+      <stop offset="1" stop-color="#dceae6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g transform="translate(96 150)">
+    <g transform="scale(2.2)">
+      <circle cx="20" cy="20" r="20" fill="#356b61"/>
+      <path d="M9 25c0-6.6 4.9-12 11-12s11 5.4 11 12" stroke="#dceae6" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M13 25c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#e7ac90" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <circle cx="20" cy="25.5" r="3" fill="#ffffff"/>
+    </g>
+  </g>
+  <text x="96" y="330" font-family="Georgia, serif" font-size="62" fill="#22302d" font-weight="600">L'enfant au milieu</text>
+  <text x="96" y="400" font-family="Georgia, serif" font-size="34" fill="#356b61">Séparations à haut conflit :</text>
+  <text x="96" y="446" font-family="Georgia, serif" font-size="34" fill="#356b61">de la psychologie aux preuves</text>
+  <text x="96" y="540" font-family="Arial, sans-serif" font-size="24" fill="#6c7a75">Analyse · Évaluation · Stratégie de dossier · conflit-parental.fr</text>
+</svg>

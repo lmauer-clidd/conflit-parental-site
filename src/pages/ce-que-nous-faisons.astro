@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { services } from '../data/site';
+
+const description =
+  'Évaluer, analyser les pièces, critiquer une expertise, aider au positionnement du parent, recueillir des preuves, orienter : six manières d’éclairer un dossier de séparation à haut conflit.';
+---
+
+<BaseLayout title="Ce que nous faisons" description={description}>
+  <PageHero
+    eyebrow="Nos interventions"
+    title="Six manières d’éclairer un dossier"
+    lede="Nous mobilisons le bon regard au bon moment — psychologique, factuel, social ou juridique. Chaque intervention est choisie selon les besoins réels du dossier, jamais de façon systématique."
+    crumbs={[{ label: 'Ce que nous faisons' }]}
+  />
+
+  <!-- Sommaire -->
+  <Section tone="cream" class="!py-12">
+    <nav aria-label="Sommaire des interventions">
+      <ol class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          services.map((s, i) => (
+            <li>
+              <a
+                href={`#${s.id}`}
+                class="flex items-start gap-3 rounded-xl border border-line bg-white p-4 text-body shadow-soft transition-colors hover:border-brand-200 hover:text-brand-700"
+              >
+                <span class="font-display text-brand-500">{String(i + 1).padStart(2, '0')}</span>
+                <span class="font-medium">{s.title}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+  </Section>
+
+  {
+    services.map((s, i) => (
+      <Section id={s.id} tone={i % 2 === 0 ? 'sand' : 'cream'}>
+        <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+          <div>
+            <span class="font-display text-5xl text-brand-300">{String(i + 1).padStart(2, '0')}</span>
+            <h2 class="mt-4 text-3xl">{s.title}</h2>
+            <p class="mt-4 text-lg leading-relaxed text-body">{s.summary}</p>
+          </div>
+          <ul class="space-y-4 lg:pt-16">
+            {s.points.map((point) => (
+              <li class="flex gap-3.5">
+                <svg class="mt-1 h-5 w-5 shrink-0 text-brand-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span class="text-body">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+    ))
+  }
+
+  <ContactCTA
+    title="Une situation à éclaircir ?"
+    text="Le premier entretien sert à comprendre où vous en êtes et à identifier, parmi ces interventions, celles qui auraient du sens pour votre dossier."
+  />
+</BaseLayout>

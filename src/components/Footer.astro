@@ -1,0 +1,97 @@
+---
+import { site, services, mainNav } from '../data/site';
+import Logo from './Logo.astro';
+
+const year = new Date().getFullYear();
+const topServices = services.slice(0, 5);
+---
+
+<footer class="mt-24 border-t border-line bg-sand">
+  <div class="container-page py-14">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <!-- Marque + baseline -->
+      <div class="lg:col-span-1">
+        <a href="/" class="flex items-center gap-2.5" aria-label={`${site.name} — accueil`}>
+          <Logo class="h-9 w-9" />
+          <span class="font-display text-[1.05rem] font-medium text-ink">{site.name}</span>
+        </a>
+        <p class="mt-4 text-sm leading-relaxed text-muted">
+          {site.tagline}.
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-muted">
+          Structure d’analyse, d’évaluation et de stratégie de dossier, coordonnée par {site.founder.name}.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <nav aria-label="Pages" class="text-sm">
+        <h2 class="font-display text-base text-ink">Le cabinet</h2>
+        <ul class="mt-4 space-y-2.5">
+          {
+            mainNav.map((item) => (
+              <li>
+                <a href={item.href} class="text-body hover:text-brand-700">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+          <li><a href="/contact" class="text-body hover:text-brand-700">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Interventions -->
+      <nav aria-label="Interventions" class="text-sm">
+        <h2 class="font-display text-base text-ink">Nos interventions</h2>
+        <ul class="mt-4 space-y-2.5">
+          {
+            topServices.map((s) => (
+              <li>
+                <a href={`/ce-que-nous-faisons#${s.id}`} class="text-body hover:text-brand-700">
+                  {s.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Contact -->
+      <div class="text-sm">
+        <h2 class="font-display text-base text-ink">Nous joindre</h2>
+        <address class="mt-4 not-italic space-y-2.5 text-body">
+          <p>
+            <a href={site.contact.phoneHref} class="hover:text-brand-700">{site.contact.phone}</a>
+          </p>
+          <p>
+            <a href={site.contact.emailHref} class="hover:text-brand-700">{site.contact.email}</a>
+          </p>
+          <p class="text-muted">
+            {site.contact.address.street}<br />
+            {site.contact.address.postalCode} {site.contact.address.city}
+          </p>
+          <p class="text-muted">{site.contact.coverage}</p>
+        </address>
+      </div>
+    </div>
+
+    <!-- Note de confidentialité -->
+    <div class="mt-12 rounded-2xl border border-line bg-cream/60 p-5 text-sm text-muted">
+      <p>
+        <span class="font-medium text-body">Confidentialité.</span>
+        Les informations transmises sont partagées uniquement entre les professionnels mobilisés
+        sur le dossier, dans la limite de ce qui est nécessaire à leur intervention. L’objectif :
+        protéger les informations sensibles, éviter leur dispersion, et permettre une lecture
+        coordonnée et sécurisée du dossier.
+      </p>
+    </div>
+
+    <div class="mt-10 flex flex-col gap-4 border-t border-line pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {site.name}. Tous droits réservés.</p>
+      <nav aria-label="Mentions légales" class="flex flex-wrap gap-x-5 gap-y-2">
+        <a href="/mentions-legales" class="hover:text-brand-700">Mentions légales</a>
+        <a href="/confidentialite" class="hover:text-brand-700">Confidentialité &amp; données</a>
+      </nav>
+    </div>
+  </div>
+</footer>

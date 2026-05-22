@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import Button from '../../components/Button.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { getCollection, render } from 'astro:content';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => !data.draft);
+  return articles.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const fmt = (d: Date) =>
+  new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: entry.data.title,
+  description: entry.data.description,
+  datePublished: entry.data.pubDate.toISOString(),
+  ...(entry.data.updatedDate && { dateModified: entry.data.updatedDate.toISOString() }),
+  author: { '@type': 'Organization', name: site.name },
+  publisher: { '@type': 'Organization', name: site.name },
+  inLanguage: 'fr',
+  mainEntityOfPage: `${site.url}/articles/${entry.id}`,
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: site.url },
+    { '@type': 'ListItem', position: 2, name: 'Articles', item: `${site.url}/articles` },
+    { '@type': 'ListItem', position: 3, name: entry.data.title, item: `${site.url}/articles/${entry.id}` },
+  ],
+};
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  schema={[articleSchema, breadcrumb]}
+>
+  <PageHero
+    eyebrow={fmt(entry.data.pubDate)}
+    title={entry.data.title}
+    crumbs={[{ label: 'Articles', href: '/articles' }, { label: entry.data.title }]}
+  />
+
+  <Section tone="cream">
+    <article class="prose-soft">
+      <Content />
+    </article>
+
+    <div class="prose-soft mt-12 border-t border-line pt-8">
+      <Button href="/articles" variant="ghost">← Tous les articles</Button>
+    </div>
+  </Section>
+
+  <ContactCTA />
+</BaseLayout>

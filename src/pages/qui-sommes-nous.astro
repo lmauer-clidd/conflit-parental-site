@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { site, boundaries } from '../data/site';
+
+const description =
+  'L’enfant au milieu : structure d’analyse, d’évaluation et de stratégie de dossier, coordonnée par Laëtitia Bouaziz Buiron, psychologue de la justice, avec un réseau de partenaires.';
+
+const partners = [
+  {
+    title: 'Les psychologues partenaires',
+    body: 'Mobilisés lorsque le dossier nécessite une évaluation complémentaire ou un regard clinique spécialisé — sur un parent, un enfant, une relation parent-enfant ou une dynamique familiale.',
+  },
+  {
+    title: 'Directeurs d’enquêtes et enquêteurs privés',
+    body: 'Quand le dossier exige plus qu’un récit ou une accumulation de captures d’écran. Ils recherchent, vérifient, recoupent et administrent des éléments factuels utiles, dans un cadre légal et opérationnel.',
+  },
+  {
+    title: 'Les enquêteurs sociaux',
+    body: 'Pour éclairer le contexte familial, éducatif et relationnel : l’organisation concrète du quotidien, les conditions d’accueil, la place de chaque parent et la manière dont l’enfant circule entre les adultes.',
+  },
+  {
+    title: 'Les avocats partenaires',
+    body: 'Lorsque le client n’est pas déjà accompagné, une orientation vers des avocats expérimentés dans les séparations à haut conflit peut être proposée, pour mieux articuler clinique, pièces et stratégie.',
+  },
+];
+---
+
+<BaseLayout title="Qui sommes-nous" description={description}>
+  <PageHero
+    eyebrow="Qui sommes-nous"
+    title="Analyser, évaluer, investiguer — au service d’une lecture juste"
+    lede="Nous sommes une structure d’analyse, d’évaluation et de stratégie de dossier, coordonnée par Laëtitia Bouaziz Buiron, psychologue et psychotraumatologue. L’objectif : mobiliser le bon regard au bon moment."
+    crumbs={[{ label: 'Qui sommes-nous' }]}
+  />
+
+  <!-- Laëtitia -->
+  <Section tone="cream">
+    <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+      <div>
+        <div class="aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-600 to-brand-800 shadow-card">
+          <!-- Portrait : remplacer par <img src="/images/laetitia.jpg" …> (voir IMAGES_PROMPTS.md) -->
+          <div class="flex h-full items-center justify-center p-8 text-center">
+            <p class="font-display text-2xl text-white">{site.founder.name}</p>
+          </div>
+        </div>
+      </div>
+      <div class="prose-soft">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-clay-600">
+          La fondatrice
+        </p>
+        <h2 class="text-3xl">Laëtitia Bouaziz Buiron</h2>
+        <p class="text-lg leading-relaxed text-body">
+          Psychologue, psychotraumatologue, thérapeute EMDR (traitement du trauma par mouvement
+          oculaire) certifiée et thérapeute IFS. Elle est formée à la psychologie de la justice, à la
+          criminologie, à l’entretien, à l’analyse du mensonge, aux mécanismes de manipulation, aux
+          violences intrafamiliales, aux traumatismes complexes, aux troubles dissociatifs et aux
+          enjeux d’attachement.
+        </p>
+        <p>
+          Son mémoire de recherche a porté sur l’influence des croyances dans les jugements de cour
+          d’assises, avec un intérêt particulier pour les expertises et les croyances sur le mensonge :
+          comment une simple impression peut orienter la lecture d’un dossier.
+        </p>
+        <p>
+          Ce point est central dans sa pratique. Une hésitation, une contradiction, une émotion, un
+          silence, un récit pauvre ou très détaillé ne disent pas mécaniquement si une personne ment
+          ou dit vrai. Cette attention aux biais de lecture nourrit son travail d’expertise privée, de
+          contre-expertise et d’analyse sur pièces.
+        </p>
+        <p>
+          Son regard se situe au croisement de la clinique, du trauma et de la justice. Dans une
+          approche systémique, elle cherche à comprendre comment les éléments s’organisent entre eux :
+          ce qui se répète, ce qui se confirme, ce qui pèse sur l’enfant, ce qui abîme le lien — et ce
+          qui éclaire réellement le dossier.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Réseau de partenaires -->
+  <Section tone="sand">
+    <div class="max-w-2xl">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-clay-600">Le réseau</p>
+      <h2 class="text-3xl sm:text-[2.1rem]">Un réseau de partenaires, mobilisé selon les besoins</h2>
+      <p class="mt-5 text-lg leading-relaxed text-body">
+        Dans ces dossiers, un seul angle de lecture ne suffit pas toujours. Selon les besoins,
+        l’intervention s’appuie sur des professionnels disposant d’un diplôme d’État reconnu et des
+        habilitations nécessaires.
+      </p>
+    </div>
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      {
+        partners.map((p) => (
+          <Card>
+            <h3 class="text-xl text-ink">{p.title}</h3>
+            <p class="mt-3 text-body">{p.body}</p>
+          </Card>
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- Ce que nous ne faisons pas -->
+  <Section tone="cream">
+    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+      <div class="max-w-md">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-clay-600">Notre cadre</p>
+        <h2 class="text-3xl">Ce que nous ne faisons pas</h2>
+        <p class="mt-5 text-lg leading-relaxed text-body">
+          Être clair sur nos limites fait partie du sérieux de notre travail.
+        </p>
+      </div>
+      <ul class="space-y-4">
+        {
+          boundaries.map((b) => (
+            <li class="flex gap-3.5 rounded-2xl border border-line bg-white p-5 shadow-soft">
+              <svg class="mt-0.5 h-6 w-6 shrink-0 text-brand-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
+                <path d="M9 12h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+              <span class="text-body">{b}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Section>
+
+  <ContactCTA />
+</BaseLayout>

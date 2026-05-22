@@ -1,0 +1,235 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Logo from '../components/Logo.astro';
+import { services, audiences, site } from '../data/site';
+import { landings } from '../data/landings';
+
+const description =
+  'Séparations à haut conflit : nous aidons à transformer un dossier qui déborde en lecture claire, sérieuse et exploitable. Analyse, évaluation psychologique, preuves. Intervention France entière.';
+
+const reassurance = [
+  {
+    title: 'Un cadre confidentiel',
+    text: 'Les informations sont partagées uniquement entre les professionnels mobilisés, dans la limite du nécessaire.',
+  },
+  {
+    title: 'Un regard pluridisciplinaire',
+    text: 'Psychologique, factuel, social ou juridique : le bon angle de lecture, mobilisé au bon moment.',
+  },
+  {
+    title: 'De la psychologie aux preuves',
+    text: 'Comprendre la dynamique, mais aussi aller chercher du concret quand le dossier reste au niveau des affirmations.',
+  },
+  {
+    title: 'L’enfant au centre',
+    text: 'Toujours considéré comme un enfant à protéger, jamais comme un argument ou un messager.',
+  },
+];
+---
+
+<BaseLayout title="Accueil" description={description}>
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-sand">
+    <div
+      class="pointer-events-none absolute -right-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-brand-100/70 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-clay-300/30 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="container-page relative py-16 sm:py-24">
+      <div class="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+        <div>
+          <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-cream/70 px-3.5 py-1.5 text-sm font-medium text-brand-700 ring-1 ring-brand-200">
+            Séparations à haut conflit
+          </p>
+          <h1 class="text-4xl leading-[1.1] sm:text-5xl lg:text-[3.4rem]">
+            Quand le conflit brouille tout, nous vous aidons à y voir clair.
+          </h1>
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-body sm:text-xl">
+            Messages, plaintes, expertises, versions opposées… Le dossier grossit sans devenir plus
+            solide. Nous transformons ce qui déborde en un dossier <strong class="font-semibold text-ink"
+              >clair, sérieux et exploitable</strong
+            > — en gardant l’enfant au centre.
+          </p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button href="/contact">Prendre contact</Button>
+            <Button href="/ce-que-nous-faisons" variant="ghost">Ce que nous faisons</Button>
+          </div>
+          <p class="mt-6 text-sm text-muted">
+            Premier entretien de prise de contact · {site.pricing.firstInterview}/h · {site.contact.coverage}.
+          </p>
+        </div>
+
+        <!-- Visuel : remplacer le bloc par <img src="/images/hero.jpg" …> une fois généré (voir IMAGES_PROMPTS.md) -->
+        <div class="relative">
+          <div
+            class="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-700 to-brand-900 shadow-card"
+          >
+            <div
+              class="absolute inset-0 opacity-90"
+              style="background:radial-gradient(120% 80% at 80% 0%, rgba(231,172,144,0.35), transparent 55%)"
+              aria-hidden="true"
+            >
+            </div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-5 p-8 text-center">
+              <Logo class="h-16 w-16" />
+              <p class="font-display text-2xl text-white">L’enfant au milieu</p>
+              <p class="max-w-xs text-sm leading-relaxed text-brand-100">
+                Remettre l’enfant au centre de la lecture du dossier — comme un être sensible à part
+                entière.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO / REFRAME -->
+  <Section tone="cream">
+    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <SectionHeading eyebrow="Notre rôle" title="Une pile de pièces ne fait pas une démonstration">
+        <p>
+          Un ressenti ne fait pas une preuve. Une expertise mal menée peut brouiller encore davantage
+          la lecture de la situation.
+        </p>
+      </SectionHeading>
+      <div class="space-y-5 text-lg leading-relaxed text-body lg:pt-16">
+        <p>
+          C’est là que nous intervenons. Lire ce qui compte. Repérer ce qui se répète. Comprendre les
+          schémas relationnels. Écarter ce qui parasite. Faire évaluer ce qui doit l’être.
+        </p>
+        <p>
+          Et, lorsque le dossier reste au niveau des affirmations, aller chercher du concret — pour
+          construire une stratégie qui tienne debout, sur le plan clinique, factuel et judiciaire.
+        </p>
+        <p class="text-base text-muted">
+          Notre intervention ne relève pas du soin : nous ne proposons pas de prise en charge
+          thérapeutique. Nous sommes dans une logique d’analyse, d’évaluation, d’investigation et de
+          stratégie.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- CE QUE NOUS FAISONS -->
+  <Section tone="sand">
+    <SectionHeading eyebrow="Ce que nous faisons" title="Six manières d’éclairer un dossier" align="center" class="mb-12">
+      <p>Chaque intervention est choisie selon les besoins réels du dossier — jamais systématique.</p>
+    </SectionHeading>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map((s) => (
+          <Card href={`/ce-que-nous-faisons#${s.id}`} class="group">
+            <h3 class="text-xl text-ink group-hover:text-brand-700">{s.title}</h3>
+            <p class="mt-3 text-body">{s.summary}</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
+              En savoir plus
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </Card>
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- POURQUOI / RÉASSURANCE -->
+  <Section tone="cream">
+    <SectionHeading eyebrow="Notre approche" title="Sérieux, discret, centré sur l’enfant" class="mb-12">
+      <p>Ce qui guide notre manière de travailler, dans chaque dossier.</p>
+    </SectionHeading>
+    <div class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+      {
+        reassurance.map((r, i) => (
+          <div class="flex gap-4">
+            <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-100 font-display text-brand-700">
+              {i + 1}
+            </span>
+            <div>
+              <h3 class="text-lg text-ink">{r.title}</h3>
+              <p class="mt-1.5 text-body">{r.text}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- SITUATIONS FRÉQUENTES (landings) -->
+  <Section tone="sand">
+    <SectionHeading eyebrow="Situations fréquentes" title="Vous vous reconnaissez ?" class="mb-12">
+      <p>Quelques entrées concrètes vers ce que nous faisons, selon là où vous en êtes.</p>
+    </SectionHeading>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        landings.map((l) => (
+          <Card href={`/${l.slug}`} class="group">
+            <h3 class="text-lg text-ink group-hover:text-brand-700">{l.navLabel}</h3>
+            <p class="mt-2.5 text-[0.97rem] text-body">{l.teaser}</p>
+          </Card>
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- POUR QUI -->
+  <Section tone="cream">
+    <SectionHeading eyebrow="Pour qui" title="Aux côtés de celles et ceux qui en ont besoin" class="mb-12">
+      <p>Parents, enfants, avocats, magistrats : un éclairage adapté à chaque place.</p>
+    </SectionHeading>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        audiences.map((a) => (
+          <div class="rounded-2xl border border-line bg-white p-6 shadow-soft">
+            <h3 class="text-lg text-ink">{a.title}</h3>
+            <p class="mt-2 text-[0.95rem] text-body">{a.intro}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="mt-8">
+      <Button href="/pour-qui" variant="ghost">Découvrir notre accompagnement</Button>
+    </div>
+  </Section>
+
+  <!-- LAËTITIA (teaser) -->
+  <Section tone="sand">
+    <div class="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <div
+        class="aspect-square overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-600 to-brand-800 shadow-card"
+      >
+        <!-- Portrait : remplacer par <img src="/images/laetitia.jpg" …> (voir IMAGES_PROMPTS.md) -->
+        <div class="flex h-full items-center justify-center p-8 text-center">
+          <p class="font-display text-2xl text-white">{site.founder.name}</p>
+        </div>
+      </div>
+      <div>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-clay-600">Qui sommes-nous</p>
+        <h2 class="text-3xl sm:text-[2.1rem]">Une structure coordonnée par une psychologue de la justice</h2>
+        <p class="mt-5 text-lg leading-relaxed text-body">
+          {site.founder.name}, psychologue et psychotraumatologue, situe son regard au croisement de
+          la clinique, du trauma et de la justice. Autour d’elle, un réseau de partenaires :
+          psychologues, enquêteurs privés, enquêteurs sociaux et avocats habitués aux situations
+          familiales complexes.
+        </p>
+        <div class="mt-7">
+          <Button href="/qui-sommes-nous" variant="ghost">En savoir plus sur l’équipe</Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <ContactCTA />
+</BaseLayout>

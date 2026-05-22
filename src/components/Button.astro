@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'ghost' | 'clay';
+  class?: string;
+}
+const { href, variant = 'primary', class: className = '' } = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-[0.98rem] font-medium transition-colors focus-visible:outline-2';
+const variants: Record<string, string> = {
+  primary: 'bg-brand-600 text-white shadow-soft hover:bg-brand-700',
+  clay: 'bg-clay-500 text-white shadow-soft hover:bg-clay-600',
+  ghost: 'border border-brand-200 bg-white/60 text-brand-800 hover:bg-brand-50',
+};
+---
+<a href={href} class:list={[base, variants[variant], className]}>
+  <slot />
+</a>

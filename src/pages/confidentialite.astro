@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import { site } from '../data/site';
+
+const description =
+  'Politique de confidentialité et traitement des données personnelles du site L’enfant au milieu.';
+---
+
+<BaseLayout title="Confidentialité & données" description={description} noindex={true}>
+  <PageHero
+    eyebrow="Vos données"
+    title="Confidentialité &amp; données personnelles"
+    lede="La protection de vos informations est au cœur de notre travail. Voici, en toute transparence, comment ce site traite vos données."
+    crumbs={[{ label: 'Confidentialité' }]}
+  />
+
+  <Section tone="cream">
+    <div class="prose-soft">
+      <h2>Responsable du traitement</h2>
+      <p>
+        Les données collectées via ce site sont traitées par {site.legalName}
+        ({site.contact.address.street}, {site.contact.address.postalCode}
+        {site.contact.address.city}), joignable à l’adresse
+        <a href={site.contact.emailHref} class="link">{site.contact.email}</a>.
+      </p>
+
+      <h2>Quelles données et pourquoi</h2>
+      <p>
+        Le formulaire de contact recueille uniquement les données que vous choisissez de nous
+        transmettre : nom, e-mail, téléphone (facultatif) et le message décrivant brièvement votre
+        demande. Ces données servent <strong>exclusivement</strong> à traiter votre demande de prise
+        de contact et à vous recontacter.
+      </p>
+      <p>
+        Nous vous invitons à ne pas faire figurer dans ce formulaire d’informations sensibles
+        (données de santé, éléments détaillés concernant des enfants, etc.). Ces sujets sont abordés
+        lors d’un échange direct, dans un cadre adapté et confidentiel.
+      </p>
+
+      <h2>Base légale</h2>
+      <p>
+        Le traitement repose sur votre consentement (case à cocher du formulaire) et sur les mesures
+        prises à votre demande avant une éventuelle relation contractuelle.
+      </p>
+
+      <h2>Destinataires</h2>
+      <p>
+        Vos données ne sont accessibles qu’aux personnes habilitées au sein de la structure. Elles ne
+        sont ni vendues, ni cédées, ni transmises à des tiers à des fins commerciales. Dans le cadre
+        d’un dossier, les informations ne sont partagées qu’entre les professionnels mobilisés, dans
+        la limite du nécessaire à leur intervention.
+      </p>
+
+      <h2>Durée de conservation</h2>
+      <p>
+        Les demandes de contact restées sans suite sont conservées au maximum
+        <strong>12 mois</strong>, puis supprimées. Lorsqu’une relation de travail s’engage, les
+        durées de conservation propres au dossier vous sont précisées.
+      </p>
+
+      <h2>Hébergement &amp; localisation</h2>
+      <p>
+        Le site et les éventuelles données associées sont hébergés sur une infrastructure située dans
+        l’Union européenne. Aucun transfert de données hors UE n’est réalisé du fait de ce site.
+      </p>
+
+      <h2>Cookies &amp; mesure d’audience</h2>
+      <p>
+        Ce site ne dépose <strong>aucun cookie de suivi publicitaire</strong> et n’intègre pas de
+        traceurs tiers. Aucune bannière de consentement n’est donc nécessaire.
+      </p>
+
+      <h2>Vos droits</h2>
+      <p>
+        Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’effacement, de
+        limitation, d’opposition et de portabilité de vos données. Pour les exercer, écrivez-nous à
+        <a href={site.contact.emailHref} class="link">{site.contact.email}</a>.
+      </p>
+      <p>
+        Vous pouvez également introduire une réclamation auprès de la CNIL
+        (<a href="https://www.cnil.fr" class="link" rel="noopener" target="_blank">www.cnil.fr</a>).
+      </p>
+    </div>
+  </Section>
+</BaseLayout>

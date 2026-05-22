@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ *  Design tokens — « L'enfant au milieu »
+ *  Direction : calme, chaleureuse, rassurante. Pétrole/sauge + sable.
+ *  Aucun visuel anxiogène. Beaucoup d'air, typographie posée.
+ * ------------------------------------------------------------------ */
+@theme {
+  /* Typographie (auto-hébergée via @fontsource — aucun appel CDN) */
+  --font-sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
+
+  /* Marque — pétrole / sauge : sérieux mais apaisant */
+  --color-brand-50:  #f1f7f5;
+  --color-brand-100: #dceae6;
+  --color-brand-200: #bdd9d1;
+  --color-brand-300: #93c0b4;
+  --color-brand-400: #64a092;
+  --color-brand-500: #428275;
+  --color-brand-600: #356b61;
+  --color-brand-700: #2c574f;
+  --color-brand-800: #264642;
+  --color-brand-900: #213b38;
+
+  /* Neutres chauds — fonds sable / crème */
+  --color-cream:      #faf7f1;
+  --color-sand:       #f3ecdf;
+  --color-sand-deep:  #e8dcc8;
+
+  /* Accent — argile / terracotta douce, utilisé avec parcimonie */
+  --color-clay-300: #e7ac90;
+  --color-clay-400: #db9173;
+  --color-clay-500: #cd7a59;
+  --color-clay-600: #b56344;
+
+  /* Texte */
+  --color-ink:   #22302d; /* titres */
+  --color-body:  #41504c; /* corps de texte */
+  --color-muted: #6c7a75; /* texte secondaire */
+  --color-line:  #e4ddd0; /* filets / bordures douces */
+
+  /* Rayons & ombres */
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+  --shadow-soft: 0 1px 2px rgba(34, 48, 45, 0.04), 0 8px 24px rgba(34, 48, 45, 0.06);
+  --shadow-card: 0 1px 3px rgba(34, 48, 45, 0.05), 0 12px 32px rgba(34, 48, 45, 0.07);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Base
+ * ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem; /* compense le header collant lors des ancres */
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    font-weight: 560;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  a { color: inherit; }
+
+  /* Accessibilité : focus visible net et chaleureux */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Respecte les préférences de mouvement réduit */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Composants utilitaires
+ * ------------------------------------------------------------------ */
+@layer components {
+  /* Conteneur centré standard */
+  .container-page {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 76rem;
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    .container-page { padding-inline: 2rem; }
+  }
+
+  /* Lien de contenu (dans les textes longs) */
+  .link {
+    color: var(--color-brand-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--color-brand-300);
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
+  }
+  .link:hover { color: var(--color-brand-800); text-decoration-color: var(--color-brand-600); }
+
+  /* Zone de texte longue (articles, landing) */
+  .prose-soft { max-width: 44rem; font-size: 1.075rem; color: var(--color-body); }
+  .prose-soft > :first-child { margin-top: 0; }
+  .prose-soft p { margin-block: 1.1rem; line-height: 1.75; }
+  .prose-soft h2 { font-size: 1.6rem; margin-top: 2.6rem; margin-bottom: 0.9rem; }
+  .prose-soft h3 { font-size: 1.25rem; margin-top: 1.8rem; margin-bottom: 0.6rem; }
+  .prose-soft strong { color: var(--color-ink); font-weight: 600; }
+  .prose-soft a {
+    color: var(--color-brand-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-brand-300);
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  }
+  .prose-soft a:hover { color: var(--color-brand-800); text-decoration-color: var(--color-brand-600); }
+  .prose-soft ul { margin-block: 1.1rem; padding-left: 1.25rem; list-style: none; }
+  .prose-soft ul li { position: relative; padding-left: 1.25rem; margin-block: 0.5rem; }
+  .prose-soft ul li::before {
+    content: "";
+    position: absolute; left: 0; top: 0.7em;
+    width: 0.45rem; height: 0.45rem; border-radius: 9999px;
+    background: var(--color-brand-400);
+  }
+  .prose-soft blockquote {
+    margin-block: 1.4rem; padding: 0.6rem 1.2rem;
+    border-left: 3px solid var(--color-brand-300);
+    color: var(--color-muted); font-style: italic;
+  }
+}
