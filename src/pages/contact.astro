@@ -72,25 +72,25 @@ const addr = site.contact.address;
           <form id="contact-form" class="mt-6 space-y-5" novalidate data-email={site.contact.email}>
             <div class="grid gap-5 sm:grid-cols-2">
               <div>
-                <label for="nom" class="block text-sm font-medium text-ink">Nom <span class="text-clay-600">*</span></label>
+                <label for="nom" class="block text-sm font-medium text-ink">Nom <span class="text-clay-700" aria-hidden="true">*</span></label>
                 <input id="nom" name="nom" type="text" required autocomplete="name"
-                  class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-400 focus:bg-white" />
+                  class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 focus:bg-white" />
               </div>
               <div>
                 <label for="tel" class="block text-sm font-medium text-ink">Téléphone</label>
                 <input id="tel" name="tel" type="tel" autocomplete="tel"
-                  class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-400 focus:bg-white" />
+                  class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 focus:bg-white" />
               </div>
             </div>
             <div>
-              <label for="email" class="block text-sm font-medium text-ink">E-mail <span class="text-clay-600">*</span></label>
+              <label for="email" class="block text-sm font-medium text-ink">E-mail <span class="text-clay-700" aria-hidden="true">*</span></label>
               <input id="email" name="email" type="email" required autocomplete="email"
-                class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-400 focus:bg-white" />
+                class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 focus:bg-white" />
             </div>
             <div>
-              <label for="message" class="block text-sm font-medium text-ink">Votre situation en quelques mots <span class="text-clay-600">*</span></label>
+              <label for="message" class="block text-sm font-medium text-ink">Votre situation en quelques mots <span class="text-clay-700" aria-hidden="true">*</span></label>
               <textarea id="message" name="message" rows="5" required
-                class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-400 focus:bg-white"></textarea>
+                class="mt-1.5 w-full rounded-xl border border-line bg-cream/50 px-4 py-3 text-ink outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 focus:bg-white"></textarea>
               <p class="mt-2 text-sm text-muted">
                 Merci de rester général : inutile de détailler ici des informations sensibles
                 (santé, éléments concernant les enfants…). Nous en parlerons lors du premier échange.
@@ -101,7 +101,7 @@ const addr = site.contact.address;
                 class="mt-1 h-5 w-5 shrink-0 rounded border-line text-brand-600 focus:ring-brand-400" />
               <label for="consent" class="text-sm text-body">
                 J’accepte d’être recontacté(e) au sujet de ma demande. Voir la
-                <a href="/confidentialite" class="link">politique de confidentialité</a>. <span class="text-clay-600">*</span>
+                <a href="/confidentialite" class="link">politique de confidentialité</a>. <span class="text-clay-700" aria-hidden="true">*</span>
               </label>
             </div>
 

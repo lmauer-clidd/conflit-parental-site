@@ -32,11 +32,13 @@
   --color-clay-400: #db9173;
   --color-clay-500: #cd7a59;
   --color-clay-600: #b56344;
+  --color-clay-700: #9a4f30; /* terracotta foncé — pour le TEXTE (contraste AA) */
+  --color-clay-800: #7e4226;
 
   /* Texte */
   --color-ink:   #22302d; /* titres */
   --color-body:  #41504c; /* corps de texte */
-  --color-muted: #6c7a75; /* texte secondaire */
+  --color-muted: #55635d; /* texte secondaire (AA ≥ 4.5:1 sur sable/crème) */
   --color-line:  #e4ddd0; /* filets / bordures douces */
 
   /* Rayons & ombres */
@@ -83,6 +85,11 @@
     outline: 2px solid var(--color-brand-500);
     outline-offset: 3px;
     border-radius: 4px;
+  }
+  /* Sur fonds sombres, anneau de focus clair (sinon peu visible) */
+  .bg-brand-800 :focus-visible,
+  .bg-brand-900 :focus-visible {
+    outline-color: var(--color-brand-100);
   }
 
   /* Respecte les préférences de mouvement réduit */
@@ -147,6 +154,6 @@
   .prose-soft blockquote {
     margin-block: 1.4rem; padding: 0.6rem 1.2rem;
     border-left: 3px solid var(--color-brand-300);
-    color: var(--color-muted); font-style: italic;
+    color: var(--color-body); font-style: italic;
   }
 }

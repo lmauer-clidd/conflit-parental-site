@@ -41,15 +41,16 @@ const partners = [
   <Section tone="cream">
     <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
       <div>
-        <div class="aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-600 to-brand-800 shadow-card">
-          <!-- Portrait : remplacer par <img src="/images/laetitia.jpg" …> (voir IMAGES_PROMPTS.md) -->
-          <div class="flex h-full items-center justify-center p-8 text-center">
-            <p class="font-display text-2xl text-white">{site.founder.name}</p>
-          </div>
-        </div>
+        <img
+          src="/images/avatar-laetitia.svg"
+          alt={`Portrait de ${site.founder.name} (illustration provisoire, en attendant une photographie)`}
+          width="800"
+          height="1000"
+          class="aspect-[4/5] w-full rounded-[2rem] object-cover shadow-card"
+        />
       </div>
       <div class="prose-soft">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-clay-600">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-clay-700">
           La fondatrice
         </p>
         <h2 class="text-3xl">Laëtitia Bouaziz Buiron</h2>
@@ -84,7 +85,7 @@ const partners = [
   <!-- Réseau de partenaires -->
   <Section tone="sand">
     <div class="max-w-2xl">
-      <p class="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-clay-600">Le réseau</p>
+      <p class="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-clay-700">Le réseau</p>
       <h2 class="text-3xl sm:text-[2.1rem]">Un réseau de partenaires, mobilisé selon les besoins</h2>
       <p class="mt-5 text-lg leading-relaxed text-body">
         Dans ces dossiers, un seul angle de lecture ne suffit pas toujours. Selon les besoins,
@@ -108,7 +109,7 @@ const partners = [
   <Section tone="cream">
     <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
       <div class="max-w-md">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-clay-600">Notre cadre</p>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-clay-700">Notre cadre</p>
         <h2 class="text-3xl">Ce que nous ne faisons pas</h2>
         <p class="mt-5 text-lg leading-relaxed text-body">
           Être clair sur nos limites fait partie du sérieux de notre travail.

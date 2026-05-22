@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Illustration apaisée : une aube douce sur un horizon calme, une arche protectrice abritant un point lumineux">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef4f1"/>
+      <stop offset="0.45" stop-color="#f3ecdf"/>
+      <stop offset="1" stop-color="#f6e2d4"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.56" r="0.55">
+      <stop offset="0" stop-color="#f2c3a6" stop-opacity="0.85"/>
+      <stop offset="0.5" stop-color="#edb094" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#edb094" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6d9c2"/>
+      <stop offset="1" stop-color="#e7ac90"/>
+    </linearGradient>
+    <linearGradient id="hillBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a9ccc2"/>
+      <stop offset="1" stop-color="#93c0b4"/>
+    </linearGradient>
+    <linearGradient id="hillMid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#56938a"/>
+      <stop offset="1" stop-color="#428275"/>
+    </linearGradient>
+    <linearGradient id="hillFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f6b62"/>
+      <stop offset="1" stop-color="#244c46"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ciel -->
+  <rect width="800" height="1000" fill="url(#sky)"/>
+
+  <!-- halo lumineux -->
+  <rect width="800" height="1000" fill="url(#glow)"/>
+
+  <!-- soleil bas, derrière les collines -->
+  <circle cx="400" cy="600" r="118" fill="url(#sun)"/>
+
+  <!-- arche protectrice (motif de marque) abritant le point enfant -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M250 318 A150 150 0 0 1 550 318" stroke="#bcd9d1" stroke-width="6" opacity="0.55"/>
+    <path d="M298 318 A102 102 0 0 1 502 318" stroke="#e7ac90" stroke-width="5" opacity="0.7"/>
+  </g>
+  <circle cx="400" cy="318" r="11" fill="#ffffff" opacity="0.92"/>
+
+  <!-- poussières douces -->
+  <g fill="#ffffff" opacity="0.6">
+    <circle cx="180" cy="250" r="4"/>
+    <circle cx="620" cy="210" r="3"/>
+    <circle cx="660" cy="360" r="5"/>
+    <circle cx="150" cy="430" r="3"/>
+  </g>
+  <g fill="#cd7a59" opacity="0.35">
+    <circle cx="250" cy="180" r="3"/>
+    <circle cx="560" cy="430" r="4"/>
+  </g>
+
+  <!-- collines en couches (profondeur, sentier vers la lumière) -->
+  <path d="M0 690 C 180 620 320 660 420 648 C 560 632 680 600 800 636 L800 1000 L0 1000 Z" fill="url(#hillBack)"/>
+  <path d="M0 800 C 200 740 360 786 520 770 C 650 757 730 742 800 762 L800 1000 L0 1000 Z" fill="url(#hillMid)"/>
+  <path d="M0 902 C 160 860 300 892 460 902 C 620 912 700 922 800 906 L800 1000 L0 1000 Z" fill="url(#hillFront)"/>
+
+  <!-- reflet doux du soleil sur la colline avant (sentier) -->
+  <path d="M392 905 C 396 880 404 880 408 905 L404 1000 L396 1000 Z" fill="#f6d9c2" opacity="0.18"/>
+</svg>

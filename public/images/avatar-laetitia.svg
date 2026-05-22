@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Portrait d'illustration générique, en attendant une photographie">
+  <defs>
+    <linearGradient id="abg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#dceae6"/>
+      <stop offset="1" stop-color="#f3ecdf"/>
+    </linearGradient>
+    <linearGradient id="afig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#56938a"/>
+      <stop offset="1" stop-color="#356b61"/>
+    </linearGradient>
+    <radialGradient id="ahalo" cx="0.5" cy="0.42" r="0.5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#abg)"/>
+
+  <!-- halo doux -->
+  <circle cx="400" cy="430" r="300" fill="url(#ahalo)"/>
+
+  <!-- silhouette buste continue (cou + épaules + tête), calme et bienveillante -->
+  <g fill="url(#afig)">
+    <!-- épaules -->
+    <path d="M148 1000 C148 808 250 700 400 700 C550 700 652 808 652 1000 Z"/>
+    <!-- cou -->
+    <rect x="362" y="540" width="76" height="172" rx="34"/>
+    <!-- tête -->
+    <circle cx="400" cy="458" r="140"/>
+  </g>
+
+  <!-- liseré clair (col), discret -->
+  <path d="M330 712 C360 742 440 742 470 712" fill="none" stroke="#f3ecdf" stroke-width="6" opacity="0.5" stroke-linecap="round"/>
+
+  <!-- contour doux de la tête -->
+  <circle cx="400" cy="458" r="140" fill="none" stroke="#bcd9d1" stroke-width="2" opacity="0.4"/>
+</svg>

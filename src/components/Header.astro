@@ -25,7 +25,7 @@ const isActive = (href: string) =>
             href={item.href}
             aria-current={isActive(item.href) ? 'page' : undefined}
             class:list={[
-              'rounded-lg px-3 py-2 text-[0.95rem] transition-colors',
+              'whitespace-nowrap rounded-lg px-3 py-2 text-[0.95rem] transition-colors',
               isActive(item.href)
                 ? 'text-brand-800 font-medium'
                 : 'text-body hover:text-brand-700 hover:bg-brand-50',
@@ -40,7 +40,7 @@ const isActive = (href: string) =>
     <div class="flex items-center gap-2">
       <a
         href={site.contact.phoneHref}
-        class="hidden xl:inline-flex items-center gap-2 rounded-lg px-3 py-2 text-[0.95rem] text-body hover:text-brand-700"
+        class="hidden xl:inline-flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-[0.95rem] text-body hover:text-brand-700"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
@@ -116,11 +116,29 @@ const isActive = (href: string) =>
   const iconOpen = document.getElementById('icon-open');
   const iconClose = document.getElementById('icon-close');
 
+  function setMenu(open: boolean) {
+    if (!menu || !toggle) return;
+    menu.classList.toggle('hidden', !open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    iconOpen?.classList.toggle('hidden', open);
+    iconClose?.classList.toggle('hidden', !open);
+  }
+
   toggle?.addEventListener('click', () => {
-    const isOpen = menu?.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', String(isOpen));
-    toggle.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
-    iconOpen?.classList.toggle('hidden', isOpen);
-    iconClose?.classList.toggle('hidden', !isOpen);
+    setMenu(menu?.classList.contains('hidden') ?? true);
+  });
+
+  // Fermeture au clic sur un lien du menu
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenu(false));
+  });
+
+  // Échap : ferme le menu et redonne le focus au bouton
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu && !menu.classList.contains('hidden')) {
+      setMenu(false);
+      toggle?.focus();
+    }
   });
 </script>
